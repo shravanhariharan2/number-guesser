@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class NumberGuesser {
+public class Main {
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
     System.out.print("Provide an upper bound number for guessing: ");
@@ -16,7 +16,7 @@ public class NumberGuesser {
         num = in.nextInt();
         if (num < res) {
           System.out.println("Incorrect. The answer is greater than this value");
-        } else {
+        } else if (num > res) {
           System.out.println("Incorrect. The answer is less than this value");
         }
         count++;
