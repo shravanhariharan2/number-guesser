@@ -20,7 +20,7 @@ public class NumberGuesser {
   }
 
   public void playGame() {
-    this.maxNumberGuessable = this.queryIntegerInput("Provide an upper bound number for guessing: ");
+    this.queryUserForUpperBound();
     boolean isGameRunning = true;
     while (isGameRunning) {
       this.runGuessSession();
@@ -29,16 +29,14 @@ public class NumberGuesser {
     }
   }
 
+  private void queryUserForUpperBound() {
+    this.maxNumberGuessable = this.queryIntegerInput("Provide an upper bound number for guessing: ");
+  }
+
   private void runGuessSession() {
     this.targetNum = this.getRandomNumberInGuessingRange();
     while (this.currentGuess != this.targetNum) {
-      this.currentGuess = this.queryIntegerInput("Guess a number between 1 and " + this.maxNumberGuessable + ": ");
-      this.currentGuessesCount++;
-      if (this.currentGuess < this.targetNum) {
-        System.out.println("Incorrect. The answer is greater than this value");
-      } else if (this.currentGuess > this.targetNum) {
-        System.out.println("Incorrect. The answer is less than this value");
-      }
+      this.askUserToGuess();
     }
     // Need to flush buffer since Scanner::nextInt does not read newlines
     this.flushRemainingInputBuffer();
@@ -46,6 +44,16 @@ public class NumberGuesser {
 
   private int getRandomNumberInGuessingRange() {
     return (int) (Math.random() * (this.maxNumberGuessable - this.minNumberGuessable) + this.minNumberGuessable);
+  }
+
+  private void askUserToGuess() {
+    this.currentGuess = this.queryIntegerInput("Guess a number between 1 and " + this.maxNumberGuessable + ": ");
+    this.currentGuessesCount++;
+    if (this.currentGuess < this.targetNum) {
+      System.out.println("Incorrect. The answer is greater than this value");
+    } else if (this.currentGuess > this.targetNum) {
+      System.out.println("Incorrect. The answer is less than this value");
+    }
   }
 
   private void flushRemainingInputBuffer() {
