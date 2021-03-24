@@ -33,6 +33,12 @@ public class NumberGuesser {
     this.maxNumberGuessable = this.queryIntegerInput("Provide an upper bound number for guessing: ");
   }
 
+  private int queryIntegerInput(String prompt) {
+    System.out.print(prompt);
+    int response = in.nextInt();
+    return response;
+  }
+
   private void runGuessSession() {
     this.targetNum = this.getRandomNumberInGuessingRange();
     while (this.currentGuess != this.targetNum) {
@@ -76,20 +82,14 @@ public class NumberGuesser {
     return false;
   }
 
-  private void resetCurrentSessionStats() {
-    this.currentGuessesCount = 0;
-    this.currentGuess = 0;
-  }
-
   private String queryStringInput(String prompt) {
     System.out.print(prompt);
     String response = in.nextLine();
     return response;
   }
 
-  private int queryIntegerInput(String prompt) {
-    System.out.print(prompt);
-    int response = in.nextInt();
-    return response;
-  }
+  private void resetCurrentSessionStats() {
+    this.currentGuessesCount = 0;
+    this.currentGuess = 0;
+  }  
 }
