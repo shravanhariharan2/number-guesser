@@ -7,7 +7,7 @@ public class Main {
     int upper = in.nextInt();
     int num = 0;
     int count = 0;
-    int min = Integer.MAX_VALUE;
+    int min = 10000000;
     boolean running = true;
     while (running) {
       int res = (int) (Math.random() * (upper - 1) + 1);
